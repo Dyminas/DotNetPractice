@@ -2,6 +2,7 @@
 
 namespace DesignPattern.CreationalPatterns.SingletonPattern
 {
+    [Serializable]
     public class SingletonWithLock
     {
         private static SingletonWithLock _instance;

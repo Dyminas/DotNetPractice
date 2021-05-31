@@ -2,6 +2,7 @@
 
 namespace DesignPattern.CreationalPatterns.SingletonPattern
 {
+    [Serializable]
     public class Singleton
     {
         private static Singleton _instance;
