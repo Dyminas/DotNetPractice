@@ -44,14 +44,15 @@ namespace DesignPattern.CreationalPatterns.SingletonPattern
         [Test]
         public void TestSingletonWithReflection()
         {
+            var type = typeof(Singleton);
+
+            Singleton instance = null;
+            Assert.Catch<TargetInvocationException>(() => instance = Activator.CreateInstance(type, true) as Singleton);
+
             var instance1 = Singleton.GetInstance();
-            var type = instance1.GetType();
-
-            Assert.Catch<TargetInvocationException>(() => Activator.CreateInstance(type, true));
-
             var field = type.GetField("_instantiated", BindingFlags.NonPublic | BindingFlags.Static);
             field.SetValue(field, false);
-            var instance2 = Activator.CreateInstance(type, true);
+            var instance2 = Activator.CreateInstance(type, true) as Singleton;
             Assert.AreNotSame(instance1, instance2);
         }
 

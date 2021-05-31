@@ -18,7 +18,7 @@ namespace DesignPattern.CreationalPatterns.SingletonPattern
         {
             if (_instantiated)
             {
-                throw new NotSupportedException();
+                throw new NotSupportedException("Do not try to break singleton pattern!");
             }
             Console.WriteLine("Created an instance");
         }

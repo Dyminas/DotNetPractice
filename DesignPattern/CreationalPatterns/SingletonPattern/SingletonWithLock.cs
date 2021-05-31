@@ -6,13 +6,13 @@ namespace DesignPattern.CreationalPatterns.SingletonPattern
     public class SingletonWithLock
     {
         private static SingletonWithLock _instance;
-        private static bool _instantiated = false;
+        private static bool _enableConstructor = false;
 
         private SingletonWithLock()
         {
-            if (_instantiated)
+            if (!_enableConstructor)
             {
-                throw new NotSupportedException();
+                throw new NotSupportedException("Do not try to break singleton pattern!");
             }
             Console.WriteLine("Created an instance");
         }
@@ -25,8 +25,9 @@ namespace DesignPattern.CreationalPatterns.SingletonPattern
                 {
                     if (_instance == null)
                     {
+                        _enableConstructor = true;
                         _instance = new SingletonWithLock();
-                        _instantiated = true;
+                        _enableConstructor = false;
                     }
                 }
             }
