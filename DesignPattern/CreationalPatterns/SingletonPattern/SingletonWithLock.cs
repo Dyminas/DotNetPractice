@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Serialization;
 
 namespace DesignPattern.CreationalPatterns.SingletonPattern
 {
@@ -6,22 +7,26 @@ namespace DesignPattern.CreationalPatterns.SingletonPattern
     public class SingletonWithLock
     {
         private static SingletonWithLock _instance;
+        private static readonly object objLock = new();
         private static bool _enableConstructor = false;
 
         private SingletonWithLock()
         {
-            if (!_enableConstructor)
+            lock (objLock)
             {
-                throw new NotSupportedException("Do not try to break singleton pattern!");
+                if (!_enableConstructor)
+                {
+                    throw new NotSupportedException("Do not try to break singleton pattern!");
+                }
+                Console.WriteLine("Created an instance");
             }
-            Console.WriteLine("Created an instance");
         }
 
         public static SingletonWithLock GetInstance()
         {
             if (_instance == null)
             {
-                lock (typeof(Singleton))
+                lock (objLock)
                 {
                     if (_instance == null)
                     {
@@ -32,6 +37,12 @@ namespace DesignPattern.CreationalPatterns.SingletonPattern
                 }
             }
             return _instance;
+        }
+
+        [OnDeserializing]
+        internal void OnDeserializing(StreamingContext context)
+        {
+            throw new NotSupportedException("Do not try to break singleton pattern!");
         }
     }
 }

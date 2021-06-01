@@ -69,15 +69,15 @@ namespace DesignPattern.CreationalPatterns.SingletonPattern
         [Test]
         public void TestSingletonWithBinarySerialization()
         {
-            var instance1 = SingletonWithLock.GetInstance();
+            SingletonWithLock instance1 = SingletonWithLock.GetInstance();
+            SingletonWithLock instance2 = null;
             IFormatter formatter = new BinaryFormatter();
             Stream stream = new FileStream("MyFile.bin", FileMode.Create, FileAccess.Write, FileShare.None);
             formatter.Serialize(stream, instance1);
             stream.Close();
             stream = new FileStream("MyFile.bin", FileMode.Open, FileAccess.Read, FileShare.Read);
-            var instance2 = (SingletonWithLock)formatter.Deserialize(stream);
+            Assert.Catch<SerializationException>(() => instance2 = (SingletonWithLock)formatter.Deserialize(stream));
             stream.Close();
-            Assert.AreNotSame(instance1, instance2);
         }
     }
 }

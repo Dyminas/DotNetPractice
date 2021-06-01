@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Serialization;
 
 namespace DesignPattern.CreationalPatterns.SingletonPattern
 {
@@ -26,6 +27,12 @@ namespace DesignPattern.CreationalPatterns.SingletonPattern
         public static Singleton GetInstance()
         {
             return _instance;
+        }
+
+        [OnDeserializing]
+        internal void OnDeserializing(StreamingContext context)
+        {
+            throw new NotSupportedException("Do not try to break singleton pattern!");
         }
     }
 }
