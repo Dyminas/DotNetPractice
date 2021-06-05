@@ -16,7 +16,6 @@ namespace DesignPattern.CreationalPatterns.SingletonPattern
         [SetUp]
         public void SetUp()
         {
-
         }
 
         [Test]
@@ -71,6 +70,9 @@ namespace DesignPattern.CreationalPatterns.SingletonPattern
         {
             SingletonWithLock instance1 = SingletonWithLock.GetInstance();
             SingletonWithLock instance2 = null;
+
+#pragma warning disable SYSLIB0011
+
             IFormatter formatter = new BinaryFormatter();
             Stream stream = new FileStream("MyFile.bin", FileMode.Create, FileAccess.Write, FileShare.None);
             formatter.Serialize(stream, instance1);
@@ -78,6 +80,8 @@ namespace DesignPattern.CreationalPatterns.SingletonPattern
             stream = new FileStream("MyFile.bin", FileMode.Open, FileAccess.Read, FileShare.Read);
             Assert.Catch<SerializationException>(() => instance2 = (SingletonWithLock)formatter.Deserialize(stream));
             stream.Close();
+
+#pragma warning restore SYSLIB0011
         }
     }
 }
