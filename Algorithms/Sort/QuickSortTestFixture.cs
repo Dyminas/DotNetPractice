@@ -1,33 +1,15 @@
 ﻿using NUnit.Framework;
-using System;
 
 namespace Algorithms.Sort
 {
     [TestFixture]
-    public class QuickSortTestFixture
+    public class QuickSortTestFixture : BaseSortTestFixture
     {
-        private int[] _array;
-        private const int SIZE = 256;
-
-        [SetUp]
-        public void SetUp()
-        {
-            _array = new int[SIZE];
-            var random = new Random();
-            for (int i = 0; i < _array.Length; i++)
-            {
-                _array[i] = random.Next(1, 3072);
-            }
-        }
-
         [Test]
         public void TestQuickSort()
         {
             QuickSort(_array);
-            for (int i = 0; i < _array.Length - 2; i++)
-            {
-                Assert.IsTrue(_array[i] <= _array[i + 1]);
-            }
+            CheckAscendingArray();
         }
 
         private static void QuickSort(int[] array)
@@ -62,7 +44,7 @@ namespace Algorithms.Sort
                     }
                 }
                 array[r] = temp;
-                QuickSort(array, left, l);
+                QuickSort(array, left, l - 1);
                 QuickSort(array, l + 1, right);
             }
         }
