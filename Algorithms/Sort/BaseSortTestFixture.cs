@@ -15,7 +15,7 @@ namespace Algorithms.Sort
             var random = new Random();
             for (int i = 0; i < _array.Length; i++)
             {
-                _array[i] = random.Next(1, 3072);
+                _array[i] = random.Next(1, 30000);
             }
         }
 
