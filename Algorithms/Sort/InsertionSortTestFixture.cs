@@ -14,22 +14,15 @@ namespace Algorithms.Sort
 
         private static void InsertionSort(int[] array)
         {
-            int temp;
-            for (int i = 1; i < array.Length; i++)
+            int temp, i, j;
+            for (i = 1; i < array.Length; i++)
             {
-                for (int j = i; j > 0; j--)
+                temp = array[i];
+                for (j = i; j > 0 && temp < array[j - 1]; j--)
                 {
-                    if (array[j - 1] > array[j])
-                    {
-                        temp = array[j - 1];
-                        array[j - 1] = array[j];
-                        array[j] = temp;
-                    }
-                    else
-                    {
-                        break;
-                    }
+                    array[j] = array[j - 1];
                 }
+                array[j] = temp;
             }
         }
     }
