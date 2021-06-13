@@ -8,8 +8,7 @@ namespace Algorithms.Sort
         [Test]
         public void TestBubbleSort()
         {
-            BubbleSort(_array);
-            CheckAscendingArray();
+            ExecuteSortAndCheck(BubbleSort);
         }
 
         private static void BubbleSort(int[] array)

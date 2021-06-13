@@ -1,25 +1,37 @@
 ﻿using NUnit.Framework;
 using System;
+using System.Diagnostics;
 
 namespace Algorithms.Sort
 {
     public class BaseSortTestFixture
     {
-        protected int[] _array;
-        protected const int SIZE = 30000;
+        private int[] _array;
+        private const int _size = 50000;
+        private const int _max = 50000;
+
 
         [SetUp]
         public void SetUp()
         {
-            _array = new int[SIZE];
+            _array = new int[_size];
             var random = new Random();
             for (int i = 0; i < _array.Length; i++)
             {
-                _array[i] = random.Next(1, 30000);
+                _array[i] = random.Next(1, _max);
             }
         }
 
-        protected void CheckAscendingArray()
+        protected void ExecuteSortAndCheck(Action<int[]> sort)
+        {
+            Stopwatch stopWatch = Stopwatch.StartNew();
+            sort(_array);
+            stopWatch.Stop();
+            Console.WriteLine($"Sorting Time: {stopWatch.ElapsedMilliseconds} ms");
+            CheckAscendingArray();
+        }
+
+        private void CheckAscendingArray()
         {
             for (int i = 0; i < _array.Length - 2; i++)
             {

@@ -8,8 +8,7 @@ namespace Algorithms.Sort
         [Test]
         public void TestInsertionSort()
         {
-            InsertionSort(_array);
-            CheckAscendingArray();
+            ExecuteSortAndCheck(InsertionSort);
         }
 
         private static void InsertionSort(int[] array)

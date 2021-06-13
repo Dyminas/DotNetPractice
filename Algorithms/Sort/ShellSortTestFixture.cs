@@ -8,8 +8,7 @@ namespace Algorithms.Sort
         [Test]
         public void TestShellSort()
         {
-            ShellSort(_array);
-            CheckAscendingArray();
+            ExecuteSortAndCheck(ShellSort);
         }
 
         private static void ShellSort(int[] array) 

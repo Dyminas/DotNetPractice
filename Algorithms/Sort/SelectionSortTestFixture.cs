@@ -8,8 +8,7 @@ namespace Algorithms.Sort
         [Test]
         public void TestSelectionSort()
         {
-            SelectionSort(_array);
-            CheckAscendingArray();
+            ExecuteSortAndCheck(SelectionSort);
         }
 
         private static void SelectionSort(int[] array)

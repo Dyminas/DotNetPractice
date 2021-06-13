@@ -8,8 +8,7 @@ namespace Algorithms.Sort
         [Test]
         public void TestQuickSort()
         {
-            QuickSort(_array);
-            CheckAscendingArray();
+            ExecuteSortAndCheck(QuickSort);
         }
 
         private static void QuickSort(int[] array)
