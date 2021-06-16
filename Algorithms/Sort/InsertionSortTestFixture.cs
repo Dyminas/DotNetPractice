@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using System;
 
 namespace Algorithms.Sort
 {
@@ -11,13 +12,14 @@ namespace Algorithms.Sort
             ExecuteSortAndCheck(InsertionSort);
         }
 
-        private static void InsertionSort(int[] array)
+        private static void InsertionSort(IComparable[] array)
         {
-            int temp, i, j;
+            int i, j;
+            IComparable temp;
             for (i = 1; i < array.Length; i++)
             {
                 temp = array[i];
-                for (j = i; j > 0 && temp < array[j - 1]; j--)
+                for (j = i; j > 0 && temp.CompareTo(array[j - 1]) < 0; j--)
                 {
                     array[j] = array[j - 1];
                 }

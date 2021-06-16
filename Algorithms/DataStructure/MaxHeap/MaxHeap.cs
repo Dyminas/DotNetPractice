@@ -85,16 +85,58 @@ namespace Algorithms.DataStructure.MaxHeap
         {
             while (index > 0 && _items[(index - 1) / 2].CompareTo(_items[index]) < 0)
             {
-                Swap(index, (index - 1) / 2);
+                Swap(_items, index, (index - 1) / 2);
                 index = (index - 1) / 2;
             }
         }
 
-        private void Swap(int i, int j)
+        public T ExtractMax()
         {
-            T temp = _items[i];
-            _items[i] = _items[j];
-            _items[j] = temp;
+            if (_size < 1)
+            {
+                throw new InvalidOperationException();
+            }
+            T result = _items[0];
+            _items[0] = _items[--_size];
+            ShiftDown(_items, _size, 0);
+            return result;
+        }
+
+        public static void ShiftDown(T[] array, int length, int index)
+        {
+            int leftChild = index * 2 + 1,
+                rightChild = leftChild + 1,
+                toSwap = index;
+
+            while (leftChild < length)
+            {
+                if (array[leftChild].CompareTo(array[toSwap]) > 0)
+                {
+                    toSwap = leftChild;
+                }
+
+                if (rightChild < length && array[rightChild].CompareTo(array[toSwap]) > 0)
+                {
+                    toSwap = rightChild;
+                }
+
+                if (toSwap == index)
+                {
+                    break;
+                }
+
+                Swap(array, index, toSwap);
+                index = toSwap;
+                leftChild = index * 2 + 1;
+                rightChild = leftChild + 1;
+            }
+        }
+
+        private static void Swap(T[] array, int i, int j)
+        {
+            T temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
         }
 
         public void CheckMaxHeap()
@@ -112,48 +154,6 @@ namespace Algorithms.DataStructure.MaxHeap
                 if (rightChild < _size)
                 {
                     Assert.GreaterOrEqual(_items[i], _items[rightChild]);
-                }
-            }
-        }
-
-        public T ExtractMax()
-        {
-            if (_size < 1)
-            {
-                throw new InvalidOperationException();
-            }
-            T result = _items[0];
-            _items[0] = _items[--_size];
-            ShiftDown(0);
-            return result;
-        }
-
-        private void ShiftDown(int index)
-        {
-            int leftChild, rightChild;
-            int toSwap = index;
-            while (index * 2 < _size)
-            {
-                leftChild = index * 2 + 1;
-                if (leftChild < _size && _items[leftChild].CompareTo(_items[toSwap]) > 0)
-                {
-                    toSwap = leftChild;
-                }
-
-                rightChild = index * 2 + 2;
-                if (rightChild < _size && _items[rightChild].CompareTo(_items[toSwap]) > 0)
-                {
-                    toSwap = rightChild;
-                }
-
-                if (toSwap == index)
-                {
-                    break;
-                }
-                else
-                {
-                    Swap(index, toSwap);
-                    index = toSwap;
                 }
             }
         }

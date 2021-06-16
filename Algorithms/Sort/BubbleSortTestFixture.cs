@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using System;
 
 namespace Algorithms.Sort
 {
@@ -11,18 +12,15 @@ namespace Algorithms.Sort
             ExecuteSortAndCheck(BubbleSort);
         }
 
-        private static void BubbleSort(int[] array)
+        private static void BubbleSort(IComparable[] array)
         {
-            int temp;
             for (int i = 0; i < array.Length - 1; i++)
             {
                 for (int j = 1; j < array.Length - i; j++)
                 {
-                    if (array[j] < array[j - 1])
+                    if (array[j].CompareTo(array[j - 1]) < 0)
                     {
-                        temp = array[j - 1];
-                        array[j - 1] = array[j];
-                        array[j] = temp;
+                        Swap(array, j, j - 1);
                     }
                 }
             }

@@ -12,12 +12,12 @@ namespace Algorithms.Sort
             ExecuteSortAndCheck(MergeSort);
         }
 
-        private static void MergeSort(int[] array)
+        private static void MergeSort(IComparable[] array)
         {
             MergeSort(array, 0, array.Length - 1);
         }
 
-        private static void MergeSort(int[] array, int left, int right)
+        private static void MergeSort(IComparable[] array, int left, int right)
         {
             if (left >= right)
             {
@@ -28,13 +28,13 @@ namespace Algorithms.Sort
             MergeSort(array, left, middle);
             MergeSort(array, middle + 1, right);
 
-            if (array[middle] > array[middle + 1])
+            if (array[middle].CompareTo(array[middle + 1]) > 0)
             {
                 Merge(array, left, middle, right);
             }
         }
 
-        private static void Merge(int[] array, int left, int middle, int right)
+        private static void Merge(IComparable[] array, int left, int middle, int right)
         {
             int length = right - left + 1;
             int[] copy = new int[length];

@@ -12,12 +12,12 @@ namespace Algorithms.Sort
             ExecuteSortAndCheck(QuickSortWithTwoWays);
         }
 
-        private static void QuickSortWithTwoWays(int[] array)
+        private static void QuickSortWithTwoWays(IComparable[] array)
         {
             QuickSortWithTwoWays(array, 0, array.Length - 1);
         }
 
-        private static void QuickSortWithTwoWays(int[] array, int left, int right)
+        private static void QuickSortWithTwoWays(IComparable[] array, int left, int right)
         {
             if (left >= right)
             {
@@ -27,11 +27,11 @@ namespace Algorithms.Sort
             int l = left, r = right;
 
             // We can use a random pivot, but it costs more time here.
-            int temp = array[l];
+            IComparable temp = array[l];
 
             while (l < r)
             {
-                while (l < r && array[r] >= temp)
+                while (l < r && array[r].CompareTo(temp) >= 0)
                 {
                     r--;
                 }
@@ -40,7 +40,7 @@ namespace Algorithms.Sort
                     array[l] = array[r];
                 }
 
-                while (l < r && array[l] < temp)
+                while (l < r && array[l].CompareTo(temp) < 0)
                 {
                     l++;
                 }
@@ -60,12 +60,12 @@ namespace Algorithms.Sort
             ExecuteSortAndCheck(QuickSortWithThreeWays);
         }
 
-        private static void QuickSortWithThreeWays(int[] array)
+        private static void QuickSortWithThreeWays(IComparable[] array)
         {
             QuickSortWithThreeWays(array, 0, array.Length - 1);
         }
 
-        private static void QuickSortWithThreeWays(int[] array, int left, int right)
+        private static void QuickSortWithThreeWays(IComparable[] array, int left, int right)
         {
             if (left >= right)
             {
@@ -74,30 +74,19 @@ namespace Algorithms.Sort
 
             // We can use a random pivot, but it costs more time here.
             // Swap(array, left, new Random().Next(left, right));
-            int temp = array[left];
+            IComparable temp = array[left];
 
             int l = left, r = right, i = left + 1;
-            int swap;
 
             while (i <= r)
             {
-                if (array[i] < temp)
+                if (array[i].CompareTo(temp) < 0)
                 {
-                    // Function calling will cost more time.
-                    // Swap(array, i++, l++);
-                    swap = array[i];
-                    array[i] = array[l];
-                    array[l] = swap;
-                    ++i;
-                    ++l;
+                    Swap(array, i++, l++);
                 }
-                else if (array[i] > temp)
+                else if (array[i].CompareTo(temp) > 0)
                 {
-                    // Swap(array, i, r--);
-                    swap = array[i];
-                    array[i] = array[r];
-                    array[r] = swap;
-                    --r;
+                    Swap(array, i, r--);
                 }
                 else
                 {
@@ -107,13 +96,6 @@ namespace Algorithms.Sort
 
             QuickSortWithThreeWays(array, left, l - 1);
             QuickSortWithThreeWays(array, r + 1, right);
-        }
-
-        private static void Swap(int[] array, int i, int j)
-        {
-            int temp = array[i];
-            array[i] = array[j];
-            array[j] = temp;
         }
     }
 }

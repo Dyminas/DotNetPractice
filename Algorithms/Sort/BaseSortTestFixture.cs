@@ -6,7 +6,7 @@ namespace Algorithms.Sort
 {
     public class BaseSortTestFixture
     {
-        private int[] _array;
+        private IComparable[] _array;
         private const int _size = 50000;
         private const int _max = 50000;
 
@@ -14,7 +14,7 @@ namespace Algorithms.Sort
         [SetUp]
         public void SetUp()
         {
-            _array = new int[_size];
+            _array = new IComparable[_size];
             var random = new Random();
             for (int i = 0; i < _array.Length; i++)
             {
@@ -22,7 +22,7 @@ namespace Algorithms.Sort
             }
         }
 
-        protected void ExecuteSortAndCheck(Action<int[]> sort)
+        protected void ExecuteSortAndCheck(Action<IComparable[]> sort)
         {
             Stopwatch stopWatch = Stopwatch.StartNew();
             sort(_array);
@@ -31,11 +31,18 @@ namespace Algorithms.Sort
             CheckAscendingArray();
         }
 
+        protected static void Swap(IComparable[] array, int i, int j)
+        {
+            IComparable temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
+
         private void CheckAscendingArray()
         {
             for (int i = 0; i < _array.Length - 2; i++)
             {
-                Assert.IsTrue(_array[i] <= _array[i + 1]);
+                Assert.LessOrEqual(_array[i], _array[i + 1]);
             }
         }
 
