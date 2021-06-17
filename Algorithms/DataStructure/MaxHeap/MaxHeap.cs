@@ -83,11 +83,15 @@ namespace Algorithms.DataStructure.MaxHeap
 
         private void ShiftUp(int index)
         {
-            while (index > 0 && _items[(index - 1) / 2].CompareTo(_items[index]) < 0)
+            T temp = _items[index];
+            int parent = (index - 1) / 2;
+            while (index > 0 && _items[parent].CompareTo(temp) < 0)
             {
-                Swap(_items, index, (index - 1) / 2);
-                index = (index - 1) / 2;
+                _items[index] = _items[parent];
+                index = parent;
+                parent = (index - 1) / 2;
             }
+            _items[index] = temp;
         }
 
         public T ExtractMax()
@@ -104,39 +108,35 @@ namespace Algorithms.DataStructure.MaxHeap
 
         public static void ShiftDown(T[] array, int length, int index)
         {
-            int leftChild = index * 2 + 1,
-                rightChild = leftChild + 1,
-                toSwap = index;
+            int MaxChild,
+                leftChild = index * 2 + 1,
+                rightChild = leftChild + 1;
+
+            T temp = array[index];
 
             while (leftChild < length)
             {
-                if (array[leftChild].CompareTo(array[toSwap]) > 0)
+                if (rightChild < length && array[rightChild].CompareTo(array[leftChild]) > 0)
                 {
-                    toSwap = leftChild;
+                    MaxChild = rightChild;
+                }
+                else
+                {
+                    MaxChild = leftChild;
                 }
 
-                if (rightChild < length && array[rightChild].CompareTo(array[toSwap]) > 0)
-                {
-                    toSwap = rightChild;
-                }
-
-                if (toSwap == index)
+                if (array[MaxChild].CompareTo(temp) <= 0)
                 {
                     break;
                 }
 
-                Swap(array, index, toSwap);
-                index = toSwap;
+                array[index] = array[MaxChild];
+                index = MaxChild;
                 leftChild = index * 2 + 1;
                 rightChild = leftChild + 1;
             }
-        }
 
-        private static void Swap(T[] array, int i, int j)
-        {
-            T temp = array[i];
-            array[i] = array[j];
-            array[j] = temp;
+            array[index] = temp;
         }
 
         public void CheckMaxHeap()
