@@ -1,4 +1,4 @@
-﻿using Algorithms.DataStructure.MaxHeap;
+﻿using Algorithms.DataStructure.Heap;
 using NUnit.Framework;
 using System;
 

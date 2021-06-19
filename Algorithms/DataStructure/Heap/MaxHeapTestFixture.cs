@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using System;
 
-namespace Algorithms.DataStructure.MaxHeap
+namespace Algorithms.DataStructure.Heap
 {
     [TestFixture]
     public class MaxHeapTestFixture
@@ -9,14 +9,15 @@ namespace Algorithms.DataStructure.MaxHeap
         [Test]
         public void TestMaxHeap()
         {
-            const int capacity = 20;
+            const int capacity = 15;
+            const int count = 20;
             const int max = 1000;
 
             var heap = new MaxHeap<int>(capacity);
             var random = new Random();
-            for (int i = 0; i < capacity; i++)
+            for (int i = 0; i < count; i++)
             {
-                heap.Add(random.Next(1, max));
+                heap.Insert(random.Next(1, max));
             }
             heap.CheckMaxHeap();
 

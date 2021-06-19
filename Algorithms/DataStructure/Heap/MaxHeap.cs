@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using System;
 
-namespace Algorithms.DataStructure.MaxHeap
+namespace Algorithms.DataStructure.Heap
 {
     public class MaxHeap<T> where T : IComparable
     {
@@ -55,24 +55,15 @@ namespace Algorithms.DataStructure.MaxHeap
             _size = 0;
         }
 
-        public void Add(T item)
+        public void Insert(T item)
         {
-            if (_size < _items.Length)
+            if (_size == _items.Length)
             {
-                _items[_size++] = item;
-            }
-            else
-            {
-                AddWithResize(item);
+                Grow(_size + 1);
             }
 
-            ShiftUp(_size - 1);
-        }
-
-        private void AddWithResize(T item)
-        {
-            Grow(_size + 1);
-            _items[_size++] = item;
+            _items[_size] = item;
+            ShiftUp(_size++);
         }
 
         private void Grow(int capacity)
@@ -102,6 +93,7 @@ namespace Algorithms.DataStructure.MaxHeap
             }
             T result = _items[0];
             _items[0] = _items[--_size];
+            _items[_size] = default;
             ShiftDown(_items, _size, 0);
             return result;
         }
