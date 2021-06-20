@@ -10,7 +10,7 @@ namespace Algorithms.DataStructure.Heap
         private T[] _items;
         private int _size;
 
-        private static readonly T[] _emptyArray = new T[0];
+        private static readonly T[] _emptyArray = Array.Empty<T>();
 
         public int Count => _size;
 
@@ -23,7 +23,7 @@ namespace Algorithms.DataStructure.Heap
             {
                 if (value < _size)
                 {
-                    throw new ArgumentOutOfRangeException();
+                    throw new ArgumentOutOfRangeException(nameof(value), "New capacity cannot be less than current one!");
                 }
 
                 if (value != _items.Length)
@@ -49,7 +49,7 @@ namespace Algorithms.DataStructure.Heap
         {
             if (capacity < 0)
             {
-                throw new ArgumentOutOfRangeException();
+                throw new ArgumentOutOfRangeException(nameof(capacity), "Capacity cannot be negative!");
             }
             _items = new T[capacity];
             _size = 0;

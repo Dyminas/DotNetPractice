@@ -3,7 +3,8 @@ using System.Collections.Generic;
 
 namespace Algorithms.DataStructure.SymbolTable
 {
-    public class SymbolTableBasedOnLinkedList<TKey, TValue> where TKey : IEquatable<TKey>
+    public class SymbolTableBasedOnLinkedList<TKey, TValue> : SymbolTable<TKey, TValue>
+        where TKey : IEquatable<TKey>
     {
         private class Node
         {
@@ -25,7 +26,6 @@ namespace Algorithms.DataStructure.SymbolTable
         }
 
         private Node _head;
-        private int _size;
 
         private Node FindNode(TKey key)
         {
@@ -37,17 +37,21 @@ namespace Algorithms.DataStructure.SymbolTable
             return null;
         }
 
-        public int Count => _size;
-
-        public bool IsEmpty => _size == 0;
-
-        public bool ContainsKey(TKey key)
+        public override bool ContainsKey(TKey key)
         {
+            if (null == key)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
             return null != FindNode(key);
         }
 
-        public TValue GetValue(TKey key)
+        public override TValue GetValue(TKey key)
         {
+            if (null == key)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
             Node node = FindNode(key);
             if (null == node)
             {
@@ -59,8 +63,12 @@ namespace Algorithms.DataStructure.SymbolTable
             }
         }
 
-        public bool TryGetValue(TKey key, out TValue value)
+        public override bool TryGetValue(TKey key, out TValue value)
         {
+            if (null == key)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
             Node node = FindNode(key);
             if (null != node)
             {
@@ -71,8 +79,12 @@ namespace Algorithms.DataStructure.SymbolTable
             return false;
         }
 
-        public void Put(TKey key, TValue value)
+        public override void Put(TKey key, TValue value)
         {
+            if (null == key)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
             Node node = FindNode(key);
             if (null == node)
             {
@@ -85,13 +97,12 @@ namespace Algorithms.DataStructure.SymbolTable
             }
         }
 
-        public void Delete(TKey key)
+        public override void Delete(TKey key)
         {
             if (null == key)
             {
-                throw new ArgumentNullException();
+                throw new ArgumentNullException(nameof(key));
             }
-
             Node node = FindNode(key);
 
             if (null == node)
