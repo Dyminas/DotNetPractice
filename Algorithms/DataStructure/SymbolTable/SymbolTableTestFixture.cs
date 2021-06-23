@@ -48,5 +48,13 @@ namespace Algorithms.DataStructure.SymbolTable
             var symbolTable = new SymbolTableBasedOnOrderedArray<char, int>();
             TestSymbolTable(symbolTable, text, invalidKey);
         }
+
+        [TestCase("Search Example", 'z')]
+        [TestCase("I am the ruler", 'x')]
+        public void TestBinarySearchTree(string text, char invalidKey)
+        {
+            var symbolTable = new BinarySearchTree<char, int>();
+            TestSymbolTable(symbolTable, text, invalidKey);
+        }
     }
 }
