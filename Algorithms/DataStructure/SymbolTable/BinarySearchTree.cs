@@ -22,6 +22,60 @@ namespace Algorithms.DataStructure.SymbolTable
 
         private Node _root;
 
+        public int Height
+        {
+            get
+            {
+                if (null == _root)
+                {
+                    return 0;
+                }
+
+                Queue<Node> queue = new();
+                Node node;
+                int height = 0;
+                queue.Enqueue(_root);
+                queue.Enqueue(null);
+
+                while (queue.Count > 0)
+                {
+                    node = queue.Dequeue();
+                    if (null != node)
+                    {
+                        if (null != node.Left)
+                        {
+                            queue.Enqueue(node.Left);
+                        }
+                        if (null != node.Right)
+                        {
+                            queue.Enqueue(node.Right);
+                        }
+                    }
+                    else
+                    {
+                        height++;
+                        if (queue.Count > 0)
+                        {
+                            queue.Enqueue(null);
+                        }
+                    }
+                }
+
+                return height;
+            }
+        }
+
+        public int HeightWithRecursion => GetHeight(_root);
+
+        private int GetHeight(Node node)
+        {
+            if (null == node)
+            {
+                return 0;
+            }
+            return 1 + Math.Max(GetHeight(node.Left), GetHeight(node.Right));
+        }
+
         private static bool Find(Node node, TKey key, out Node target)
         {
             bool found = false;
@@ -216,6 +270,94 @@ namespace Algorithms.DataStructure.SymbolTable
             }
 
             throw new KeyNotFoundException($"The given key {key} was not present in the collection");
+        }
+
+        public IEnumerable<TKey> PreOrder()
+        {
+            List<TKey> result = new(_size);
+
+            if (null == _root)
+            {
+                return result;
+            }
+
+            Stack<Node> stack = new();
+            stack.Push(_root);
+
+            while (stack.TryPop(out Node node))
+            {
+                result.Add(node.Key);
+                if (null != node.Right)
+                {
+                    stack.Push(node.Right);
+                }
+                if (null != node.Left)
+                {
+                    stack.Push(node.Left);
+                }
+            }
+
+            return result;
+        }
+
+        public IEnumerable<TKey> InOrder()
+        {
+            List<TKey> result = new(_size);
+
+            if (null == _root)
+            {
+                return result;
+            }
+
+            Stack<Node> stack = new();
+            Node node = _root;
+
+            while (null != node || stack.Count > 0)
+            {
+                if (null != node)
+                {
+                    stack.Push(node);
+                    node = node.Left;
+                }
+                else
+                {
+                    stack.TryPop(out node);
+                    result.Add(node.Key);
+                    node = node?.Right;
+                }
+            }
+
+            return result;
+        }
+
+        // Exchange the order the visit of left children and right children in "PreOrder"
+        // Then reverse the result sequence
+        public IEnumerable<TKey> PostOrder()
+        {
+            Stack<TKey> result = new(_size);
+
+            if (null == _root)
+            {
+                return result;
+            }
+
+            Stack<Node> stack = new();
+            stack.Push(_root);
+
+            while (stack.TryPop(out Node node))
+            {
+                result.Push(node.Key);
+                if (null != node.Left)
+                {
+                    stack.Push(node.Left);
+                }
+                if (null != node.Right)
+                {
+                    stack.Push(node.Right);
+                }
+            }
+
+            return result.ToArray();
         }
     }
 }

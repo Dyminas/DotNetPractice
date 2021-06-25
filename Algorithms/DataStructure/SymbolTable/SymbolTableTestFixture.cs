@@ -51,6 +51,7 @@ namespace Algorithms.DataStructure.SymbolTable
 
         [TestCase("Search Example", 'z')]
         [TestCase("I am the ruler", 'x')]
+        [TestCase("This is a longer test case for sysbol table based on binary search tree", 'm')]
         public void TestBinarySearchTree(string text, char invalidKey)
         {
             var symbolTable = new BinarySearchTree<char, int>();
