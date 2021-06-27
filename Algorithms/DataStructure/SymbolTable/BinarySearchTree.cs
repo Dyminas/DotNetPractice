@@ -6,21 +6,29 @@ namespace Algorithms.DataStructure.SymbolTable
     public class BinarySearchTree<TKey, TValue> : SymbolTable<TKey, TValue>
         where TKey : IComparable<TKey>
     {
-        private class Node
+        protected class Node
         {
             public TKey Key { get; set; }
             public TValue Value { get; set; }
             public Node Left { get; set; }
             public Node Right { get; set; }
+            public bool Color { get; set; }
 
             public Node(TKey key, TValue value)
             {
                 Key = key;
                 Value = value;
             }
+
+            public Node(TKey key, TValue value, bool color)
+            {
+                Key = key;
+                Value = value;
+                Color = color;
+            }
         }
 
-        private Node _root;
+        protected Node _root;
 
         public int Height
         {
@@ -125,7 +133,7 @@ namespace Algorithms.DataStructure.SymbolTable
 
             if (!found)
             {
-                throw new KeyNotFoundException($"The given key {key} was not present in the collection");
+                throw new KeyNotFoundException($"The given key {key} was not present in the tree");
             }
 
             return target.Value;
@@ -153,7 +161,7 @@ namespace Algorithms.DataStructure.SymbolTable
             if (null == _root)
             {
                 _root = new Node(key, value);
-                ++_size;
+                _size = 1;
                 return;
             }
 
@@ -190,6 +198,8 @@ namespace Algorithms.DataStructure.SymbolTable
             _size++;
         }
 
+        // Return the gived tree after delete the min node, also set "min" with the deleted node.
+        // Remember to decrease "_size" after called this methed.
         private static Node GetAndDeleteMin(Node node, out Node min)
         {
             Node parent = null;
@@ -269,7 +279,7 @@ namespace Algorithms.DataStructure.SymbolTable
                 }
             }
 
-            throw new KeyNotFoundException($"The given key {key} was not present in the collection");
+            throw new KeyNotFoundException($"The given key {key} was not present in the tree");
         }
 
         public IEnumerable<TKey> PreOrder()
@@ -330,7 +340,7 @@ namespace Algorithms.DataStructure.SymbolTable
             return result;
         }
 
-        // Exchange the order the visit of left children and right children in "PreOrder"
+        // Visit left children and right children in the opposite order of "PreOrder"
         // Then reverse the result sequence
         public IEnumerable<TKey> PostOrder()
         {

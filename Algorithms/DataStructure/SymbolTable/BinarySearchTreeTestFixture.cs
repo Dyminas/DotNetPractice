@@ -26,13 +26,13 @@ namespace Algorithms.DataStructure.SymbolTable
         [TestCase("I am the ruler", "I amheltru")]
         public void TestPreOrderTraversal(string text, string expected)
         {
-            var symbolTable = new BinarySearchTree<char, int>();
+            var tree = new BinarySearchTree<char, int>();
             int i = 1;
             foreach (var ch in text)
             {
-                symbolTable.Put(ch, i);
+                tree.Put(ch, i);
             }
-            var keys = symbolTable.PreOrder().ToArray();
+            var keys = tree.PreOrder().ToArray();
             StringBuilder stringBuilder = new();
             stringBuilder.Append(keys);
             var result = stringBuilder.ToString();
@@ -43,13 +43,13 @@ namespace Algorithms.DataStructure.SymbolTable
         [TestCase("I am the ruler", " Iaehlmrtu")]
         public void TestInOrderTraversal(string text, string expected)
         {
-            var symbolTable = new BinarySearchTree<char, int>();
+            var tree = new BinarySearchTree<char, int>();
             int i = 1;
             foreach (var ch in text)
             {
-                symbolTable.Put(ch, i);
+                tree.Put(ch, i);
             }
-            var keys = symbolTable.InOrder().ToArray();
+            var keys = tree.InOrder().ToArray();
             StringBuilder stringBuilder = new();
             stringBuilder.Append(keys);
             var result = stringBuilder.ToString();
@@ -60,13 +60,13 @@ namespace Algorithms.DataStructure.SymbolTable
         [TestCase("I am the ruler", " elhrutmaI")]
         public void TestPostOrderTraversal(string text, string expected)
         {
-            var symbolTable = new BinarySearchTree<char, int>();
+            var tree = new BinarySearchTree<char, int>();
             int i = 1;
             foreach (var ch in text)
             {
-                symbolTable.Put(ch, i);
+                tree.Put(ch, i);
             }
-            var keys = symbolTable.PostOrder().ToArray();
+            var keys = tree.PostOrder().ToArray();
             StringBuilder stringBuilder = new();
             stringBuilder.Append(keys);
             var result = stringBuilder.ToString();
