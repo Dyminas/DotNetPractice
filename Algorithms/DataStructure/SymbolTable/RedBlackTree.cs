@@ -134,11 +134,6 @@ namespace Algorithms.DataStructure.SymbolTable
                 throw new InvalidOperationException("Cannot delete item from an empty tree!");
             }
 
-            if (Red != _root.Left?.Color && Red != _root.Right?.Color)
-            {
-                _root.Color = Red;
-            }
-
             _root = GetAndDeleteMin(_root, out _);
             --_size;
 
@@ -202,11 +197,6 @@ namespace Algorithms.DataStructure.SymbolTable
             if (null == _root)
             {
                 throw new InvalidOperationException("Cannot delete item from an empty tree!");
-            }
-
-            if (Red != _root.Left?.Color && Red != _root.Right?.Color)
-            {
-                _root.Color = Red;
             }
 
             _root = GetAndDeleteMax(_root, out _);
@@ -283,11 +273,6 @@ namespace Algorithms.DataStructure.SymbolTable
                 throw new ArgumentNullException(nameof(key));
             }
 
-            if (Red != _root.Left?.Color && Red != _root.Right?.Color)
-            {
-                _root.Color = Red;
-            }
-
             int maxHeight = ((int)Math.Log2(_size)) * 2;
             Stack<Node> path = new(maxHeight);
             Node node = _root;
@@ -331,21 +316,15 @@ namespace Algorithms.DataStructure.SymbolTable
                 throw new KeyNotFoundException($"The given key {key} was not present in the tree");
             }
 
-            if (null == node.Left)
+            if (null == node.Right)
             {
-                node = node.Right;
-            }
-            else if (null == node.Right)
-            {
-                node = node.Left;
+                node = null;
             }
             else
             {
-                Node newRight = GetAndDeleteMin(node.Right, out Node minOfRight);
-                minOfRight.Left = node.Left;
-                minOfRight.Right = newRight;
-                minOfRight.Color = node.Color;
-                node = minOfRight;
+                node.Right = GetAndDeleteMin(node.Right, out Node minOfRight);
+                node.Key = minOfRight.Key;
+                node.Value = minOfRight.Value;
             }
 
             while (path.TryPop(out Node parent))

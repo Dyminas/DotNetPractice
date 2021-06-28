@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using System;
 using System.Linq;
 using System.Text;
 
@@ -114,29 +113,20 @@ namespace Algorithms.DataStructure.SymbolTable
         public void TestDelete(string text, char keyToDelete, string expected)
         {
             var tree = CreateTreeByText(text);
-            var tmp = text.Distinct().ToArray();
-            for (int i = 0; i < tmp.Length; i++)
+
+            tree.Delete(keyToDelete);
+            var keys = tree.PreOrder().ToArray();
+            StringBuilder stringBuilder = new();
+            stringBuilder.Append(keys);
+            var result = stringBuilder.ToString();
+            Assert.AreEqual(expected, result);
+            Assert.AreEqual(expected.Length, tree.Count);
+
+            for (int i = 0; i < expected.Length; i++)
             {
-                Console.WriteLine(tree.PreOrder().ToArray());
-                tree.Delete(tmp[i]);
-                Console.WriteLine("Deleted " + tmp[i]);
+                tree.Delete(expected[i]);
             }
-
-            //tree.Delete(keyToDelete);
-            //var keys = tree.PreOrder().ToArray();
-            //StringBuilder stringBuilder = new();
-            //stringBuilder.Append(keys);
-            //var result = stringBuilder.ToString();
-            //Assert.AreEqual(expected, result);
-            //Assert.AreEqual(expected.Length, tree.Count);
-
-            //for (int i = 0; i < expected.Length; i++)
-            //{
-            //    Console.WriteLine(tree.PreOrder().ToArray());
-            //    tree.Delete(expected[i]);
-            //    Console.WriteLine("Deleted " + expected[i]);
-            //}
-            //Assert.IsTrue(tree.IsEmpty);
+            Assert.IsTrue(tree.IsEmpty);
         }
     }
 }
