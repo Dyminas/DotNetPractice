@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31321.278
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesignPatterns", "DesignPatterns\DesignPatterns.csproj", "{A14A1D8F-E172-429A-90D2-A9C4D921A4E7}"
 EndProject
@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Algorithms", "Algorithms\Al
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Database", "Database\Database.csproj", "{29D1EFDC-2B69-4851-A824-DA8E6D73AA18}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LanguageAndFramework", "LanguageAndFramework\LanguageAndFramework.csproj", "{301CD89B-F8B1-46F8-87AE-9EC5051B1511}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LanguageAndFramework", "LanguageAndFramework\LanguageAndFramework.csproj", "{301CD89B-F8B1-46F8-87AE-9EC5051B1511}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp", "WpfApp\WpfApp.csproj", "{0084DB69-7181-49E0-AA01-1AA85C7CBC06}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{301CD89B-F8B1-46F8-87AE-9EC5051B1511}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{301CD89B-F8B1-46F8-87AE-9EC5051B1511}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{301CD89B-F8B1-46F8-87AE-9EC5051B1511}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0084DB69-7181-49E0-AA01-1AA85C7CBC06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0084DB69-7181-49E0-AA01-1AA85C7CBC06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0084DB69-7181-49E0-AA01-1AA85C7CBC06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0084DB69-7181-49E0-AA01-1AA85C7CBC06}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
