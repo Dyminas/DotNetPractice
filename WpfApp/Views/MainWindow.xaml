@@ -3,10 +3,42 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WpfApp"
+        xmlns:domain="clr-namespace:WpfApp.Domain"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="WpfApp"
+        Height="450"
+        Width="800">
+    
+    <Window.DataContext>
+        <domain:MainViewModel />
+    </Window.DataContext>
 
+    <Window.Resources>
+
+        <Style TargetType="ListBoxItem">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Padding" Value="0 10"/>
+        </Style>
+
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel VerticalAlignment="Center">
+            <ListBox Padding="20" BorderThickness="0">
+                <ListBoxItem>External Program Caller</ListBoxItem>
+                <ListBoxItem>To Do</ListBoxItem>
+                <ListBoxItem>To Do</ListBoxItem>
+                <ListBoxItem>About</ListBoxItem>
+            </ListBox>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" />
     </Grid>
 </Window>
