@@ -16,8 +16,8 @@
     <Window.Resources>
 
         <Style TargetType="ListBoxItem">
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="FontSize" Value="13"/>
             <Setter Property="Padding" Value="0 10"/>
         </Style>
@@ -31,11 +31,14 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel VerticalAlignment="Center">
-            <ListBox Padding="20" BorderThickness="0">
-                <ListBoxItem>External Program Caller</ListBoxItem>
-                <ListBoxItem>To Do</ListBoxItem>
-                <ListBoxItem>To Do</ListBoxItem>
-                <ListBoxItem>About</ListBoxItem>
+            <ListBox Padding="20"
+                     BorderThickness="0"
+                     ItemsSource="{Binding ViewItems}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
             </ListBox>
         </StackPanel>
 
