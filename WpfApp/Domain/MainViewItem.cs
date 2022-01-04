@@ -5,7 +5,7 @@ namespace WpfApp.Domain
 {
     public class MainViewItem
     {
-        public string Name { get; }
+        public string Name { get; private set; }
 
         private readonly Type _contentType;
         private UserControl? _content;

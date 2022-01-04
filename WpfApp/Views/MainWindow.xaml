@@ -33,6 +33,7 @@
         <StackPanel VerticalAlignment="Center">
             <ListBox Padding="20"
                      BorderThickness="0"
+                     SelectedItem="{Binding SelectedItem, UpdateSourceTrigger=PropertyChanged}"
                      ItemsSource="{Binding ViewItems}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
@@ -42,6 +43,9 @@
             </ListBox>
         </StackPanel>
 
-        <StackPanel Grid.Column="1" />
+        <DockPanel Grid.Column="1">
+            <ContentControl DataContext="{Binding SelectedItem}"
+                            Content="{Binding Content, UpdateSourceTrigger=PropertyChanged}"/>
+        </DockPanel>
     </Grid>
 </Window>

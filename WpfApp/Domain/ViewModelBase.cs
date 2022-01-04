@@ -13,14 +13,14 @@ namespace WpfApp.Domain
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected virtual bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = "")
+        protected virtual bool SetProperty<T>(ref T member, T value, [CallerMemberName] string propertyName = "")
         {
-            if (EqualityComparer<T>.Default.Equals(field, value))
+            if (EqualityComparer<T>.Default.Equals(member, value))
             {
                 return false;
             }
 
-            field = value;
+            member = value;
             OnPropertyChanged(propertyName);
             return true;
         }
