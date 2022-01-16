@@ -2,9 +2,9 @@
 
 namespace WpfApp.Views
 {
-    public partial class ExternalProgramCaller : UserControl
+    public partial class ExternalCaller : UserControl
     {
-        public ExternalProgramCaller()
+        public ExternalCaller()
         {
             InitializeComponent();
         }

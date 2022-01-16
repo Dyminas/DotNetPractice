@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Windows.Input;
 
 namespace WpfApp.Domain
 {
-    public class CommandImpl
+    public class CommandImpl : ICommand
     {
         public event EventHandler? CanExecuteChanged;
 

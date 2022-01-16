@@ -1,10 +1,17 @@
-﻿<UserControl x:Class="WpfApp.Views.ExternalProgramCaller"
+﻿<UserControl x:Class="WpfApp.Views.ExternalCaller"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             xmlns:domain="clr-namespace:WpfApp.Domain"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800">
+
+    <UserControl.DataContext>
+        <domain:ExternalCallerViewModel />
+    </UserControl.DataContext>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
@@ -13,12 +20,16 @@
 
         <StackPanel VerticalAlignment="Center">
             <Label Margin="10,5">Nslookup</Label>
-            <TextBox Margin="10,5"></TextBox>
-            <Button Margin="10,5">Look up the domain</Button>
+            <TextBox Margin="10,5" Text="{Binding DomainName,UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <Button Margin="10,5" Command="{Binding LookUpCommand}">Look up the domain</Button>
         </StackPanel>
 
         <DockPanel Grid.Row="1">
-            <TextBlock Background="Black" Margin="10" />
+            <TextBlock Background="Black"
+                       Foreground="White"
+                       Margin="10"
+                       Padding="10"
+                       Text="{Binding ExternalResult}" />
         </DockPanel>
     </Grid>
 </UserControl>

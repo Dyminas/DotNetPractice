@@ -33,7 +33,7 @@ namespace WpfApp.Domain
 
         private static IEnumerable<MainViewItem> GenerateViewItems()
         {
-            yield return new MainViewItem("External Program Caller", typeof(ExternalProgramCaller));
+            yield return new MainViewItem("External Caller", typeof(ExternalCaller));
             yield return new MainViewItem("To Do 1", typeof(UserControl));
             yield return new MainViewItem("To Do 2", typeof(UserControl));
             yield return new MainViewItem("To Do 3", typeof(UserControl));
