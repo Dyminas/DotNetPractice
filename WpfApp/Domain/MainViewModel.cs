@@ -8,6 +8,8 @@ namespace WpfApp.Domain
 {
     public class MainViewModel : ViewModelBase
     {
+        public string MainWindowTitle { get; } = Global.MainWindowTitle;
+
         public ObservableCollection<MainViewItem> ViewItems { get; private set; }
 
         private MainViewItem _selectedItem;

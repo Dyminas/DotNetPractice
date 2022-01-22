@@ -7,12 +7,6 @@ namespace WpfApp
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            if (!Global.Mutex.WaitOne(0, false))
-            {
-                MessageBox.Show($"Application is already running: {Global.WorkingDirectory}");
-                Shutdown(1);
-            }
-
             Logger.Info($"Application started with arguments: '{string.Join(' ', e.Args)}'");
             base.OnStartup(e);
         }

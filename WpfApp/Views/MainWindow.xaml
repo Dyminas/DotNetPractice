@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:domain="clr-namespace:WpfApp.Domain"
         mc:Ignorable="d"
-        Title="WpfApp"
+        Title="{Binding MainWindowTitle}"
         Height="450"
         Width="800">
     
