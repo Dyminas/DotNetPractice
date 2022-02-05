@@ -12,10 +12,10 @@ namespace WpfApp
         private static extern IntPtr SetForegroundWindow(IntPtr hWnd);
 
         [DllImport("user32")]
-        static extern bool IsIconic(IntPtr hWnd);
+        private static extern bool IsIconic(IntPtr hWnd);
 
         [DllImport("user32")]
-        static extern bool OpenIcon(IntPtr hWnd);
+        private static extern bool OpenIcon(IntPtr hWnd);
 
         [STAThread]
         public static void Main()

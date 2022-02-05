@@ -7,8 +7,8 @@ namespace WpfApp.Domain
     public class ExternalCallerViewModel : ViewModelBase
     {
         private readonly Process _callerProcess;
-        private string _domainName;
-        private string _externalResult;
+        private string _domainName = string.Empty;
+        private string _externalResult = string.Empty;
 
         public string DomainName
         {

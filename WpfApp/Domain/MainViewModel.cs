@@ -25,7 +25,8 @@ namespace WpfApp.Domain
             {
                 new MainViewItem("Home", typeof(HomeView))
             };
-            SelectedItem = ViewItems.First();
+
+            _selectedItem = ViewItems.First();
 
             foreach (var item in GenerateViewItems())
             {
