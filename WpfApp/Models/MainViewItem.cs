@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Controls;
 
-namespace WpfApp.Domain
+namespace WpfApp.Models
 {
     public class MainViewItem
     {

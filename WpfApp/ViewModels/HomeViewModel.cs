@@ -2,7 +2,7 @@
 using System.DirectoryServices.AccountManagement;
 using System.Security.Principal;
 
-namespace WpfApp.Domain
+namespace WpfApp.ViewModels
 {
     public class HomeViewModel : ViewModelBase
     {

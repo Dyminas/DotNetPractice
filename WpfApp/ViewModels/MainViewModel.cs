@@ -2,9 +2,10 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Controls;
+using WpfApp.Models;
 using WpfApp.Views;
 
-namespace WpfApp.Domain
+namespace WpfApp.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {

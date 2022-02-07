@@ -1,8 +1,10 @@
 ﻿using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using WpfApp.ViewModels.Commands;
 
-namespace WpfApp.Domain
+namespace WpfApp.ViewModels
 {
     public class ExternalCallerViewModel : ViewModelBase
     {
@@ -13,14 +15,10 @@ namespace WpfApp.Domain
         public string DomainName
         {
             get => _domainName;
-            set
-            {
-                SetProperty(ref _domainName, value);
-                LookUpCommand.RaiseCanExecuteChangedEvent();
-            }
+            set => SetProperty(ref _domainName, value);
         }
 
-        public CommandImpl LookUpCommand { get; }
+        public ICommand LookUpCommand { get; }
 
         public string ExternalResult
         {
@@ -42,7 +40,7 @@ namespace WpfApp.Domain
                 }
             };
 
-            LookUpCommand = new CommandImpl(
+            LookUpCommand = new RelayCommand(
                 parameter =>
                 {
                     ExternalResult = string.Empty;
