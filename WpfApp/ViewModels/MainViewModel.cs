@@ -9,7 +9,7 @@ namespace WpfApp.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        public string MainWindowTitle { get; } = Global.MainWindowTitle;
+        public string MainWindowTitle { get; } = AppGlobal.MainWindowTitle;
 
         public ObservableCollection<MainViewItem> ViewItems { get; private set; }
 

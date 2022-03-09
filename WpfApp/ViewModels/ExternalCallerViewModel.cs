@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics;
 using System.IO;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using WpfApp.ViewModels.Commands;
 
@@ -46,20 +45,12 @@ namespace WpfApp.ViewModels
                     ExternalResult = string.Empty;
                     _callerProcess.StartInfo.Arguments = _domainName?.Trim();
                     _callerProcess.Start();
-                    Task.Run(() => ReadOutput(_callerProcess.StandardOutput));
-                    Task.Run(() => ReadOutput(_callerProcess.StandardError));
-                    Task.Run(() => { _callerProcess.WaitForExit(); _callerProcess.Close(); });
+                    StreamReader reader = _callerProcess.StandardOutput;
+                    ExternalResult = reader.ReadToEnd();
+                    _callerProcess.WaitForExit();
+                    _callerProcess.Close();
                 },
                 parameter => !string.IsNullOrWhiteSpace(_domainName));
-        }
-
-        private void ReadOutput(TextReader reader)
-        {
-            string? line;
-            while ((line = reader.ReadLine()) != null)
-            {
-                ExternalResult += line + '\n';
-            }
         }
     }
 }

@@ -20,9 +20,9 @@ namespace WpfApp
         [STAThread]
         public static void Main()
         {
-            if (!Global.Mutex.WaitOne(0, false))
+            if (!AppGlobal.Mutex.WaitOne(0, false))
             {
-                var existing = FindWindow(null, Global.MainWindowTitle);
+                var existing = FindWindow(null, AppGlobal.MainWindowTitle);
                 if (IntPtr.Zero != existing)
                 {
                     SetForegroundWindow(existing);
