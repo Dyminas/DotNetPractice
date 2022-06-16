@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text;
 
-namespace Algorithms.DataStructure.SymbolTable
+namespace Algorithms.DataStructure.SymbolTable.Test
 {
     [TestFixture]
     public class BinarySearchTreeTestFixture

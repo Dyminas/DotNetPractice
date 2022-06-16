@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using System.Collections.Generic;
 
-namespace Algorithms.DataStructure.SymbolTable
+namespace Algorithms.DataStructure.SymbolTable.Test
 {
     [TestFixture]
     public class SymbolTableTestFixture

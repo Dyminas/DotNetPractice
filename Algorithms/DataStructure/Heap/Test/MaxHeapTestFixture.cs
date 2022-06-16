@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using System;
 
-namespace Algorithms.DataStructure.Heap
+namespace Algorithms.DataStructure.Heap.Test
 {
     [TestFixture]
     public class MaxHeapTestFixture

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Algorithms.DataStructure.Heap
+namespace Algorithms.DataStructure.Heap.Test
 {
     [TestFixture]
     public class IndexMaxHeapTestFixture
