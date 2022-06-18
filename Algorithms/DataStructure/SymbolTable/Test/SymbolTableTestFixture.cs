@@ -66,5 +66,21 @@ namespace Algorithms.DataStructure.SymbolTable.Test
             var symbolTable = new RedBlackTree<char, int>();
             TestSymbolTable(symbolTable, text, invalidKey);
         }
+
+        [TestCase("Search Example", 'z')]
+        [TestCase("I am the ruler", 'x')]
+        public void TestSeparateChainingHashTable(string text, char invalidKey)
+        {
+            var symbolTable = new SeparateChainingHashTable<char, int>();
+            TestSymbolTable(symbolTable, text, invalidKey);
+        }
+
+        [TestCase("Search Example", 'z')]
+        [TestCase("I am the ruler", 'x')]
+        public void TestLinearProbingHashTable(string text, char invalidKey)
+        {
+            var symbolTable = new LinearProbingHashTable<char, int>();
+            TestSymbolTable(symbolTable, text, invalidKey);
+        }
     }
 }

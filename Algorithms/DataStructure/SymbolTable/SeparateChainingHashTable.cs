@@ -5,9 +5,9 @@ namespace Algorithms.DataStructure.SymbolTable
     public class SeparateChainingHashTable<TKey, TValue> : SymbolTable<TKey, TValue>
         where TKey : IEquatable<TKey>
     {
-        private const int DefaultCapacity = 97;
-        private int _capacity;
-        private SymbolTable<TKey, TValue>[] _buckets;
+        private const int DefaultCapacity = 997;
+        private readonly int _capacity;
+        private readonly SymbolTable<TKey, TValue>[] _buckets;
 
         public SeparateChainingHashTable() : this(DefaultCapacity) { }
 
